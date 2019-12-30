@@ -1,0 +1,54 @@
+:host {
+  display: block;
+  padding-top: 30px;
+  margin: 0 auto;
+  font-family: Roboto, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-size: large;
+  max-width: 1200px;
+}
+
+.ask {
+  text-align: center;
+}
+
+input,
+button {
+  font-size: large;
+  width: 200px;
+  border: 1px solid gray;
+  border-radius: 6px;
+  padding: 8px;
+}
+
+.presents {
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+  justify-content: space-between;
+
+  .present {
+    display: flex;
+    width: 50px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+
+    background-color: lightgreen;
+    border: 2px dashed seagreen;
+
+    &.presented {
+      background-color: lightcoral;
+      border: 2px dashed brown;
+    }
+  }
+}
+
+.chosen-present {
+  text-align: center;
+  .num {
+    font-size: 480px;
+  }
+  button {
+    background-color: whitesmoke;
+  }
+}
