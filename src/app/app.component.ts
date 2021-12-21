@@ -19,7 +19,7 @@ export class AppComponent {
 
   onPresentsQtyInput(qty: number) {
     this.errMsg = null;
-    if (qty < 3 || qty > 100) {
+    if (qty < 5 || qty > 50) {
       this.errMsg = 'Не, столько подарков быть не может 🤷‍♂️';
       return;
     }
@@ -44,7 +44,7 @@ export class AppComponent {
       this.errMsg = 'Подарка с таким номером нет 🤷‍♂️';
       return;
     }
-
+    
     this.skipCtrl.disable();
 
     const toChooseNums = this.presents
