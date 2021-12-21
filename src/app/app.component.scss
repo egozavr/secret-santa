@@ -2,9 +2,10 @@
   display: block;
   padding-top: 30px;
   margin: 0 auto;
-  font-family: Roboto, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: Roboto, "Helvetica Neue Light", "Helvetica Neue", Helvetica,
+    Arial, "Lucida Grande", sans-serif;
   font-size: large;
-  max-width: 1200px;
+  max-width: 1400px;
 }
 
 .ask {
@@ -22,9 +23,10 @@ button {
 
 .presents {
   display: flex;
-  flex-flow: row;
+  flex-flow: row wrap;
   width: 100%;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 20px;
 
   .present {
     display: flex;

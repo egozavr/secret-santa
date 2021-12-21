@@ -19,7 +19,7 @@ export class AppComponent {
 
   onPresentsQtyInput(qty: number) {
     this.errMsg = null;
-    if (qty < 5 || qty > 20) {
+    if (qty < 3 || qty > 100) {
       this.errMsg = 'Не, столько подарков быть не может 🤷‍♂️';
       return;
     }
