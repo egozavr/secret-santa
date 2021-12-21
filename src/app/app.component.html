@@ -1,22 +1,38 @@
-<div *ngIf="!presents; else choose" class="ask">
+<div *ngIf="presents.length === 0; else choose" class="ask">
   <p>Сколько всего подарков?</p>
-  <input #qty type="number" (keyup.enter)="onPresentsQtyInput(qty.value)" min="5" max="20">
+  <input
+    #qty
+    type="number"
+    (keyup.enter)="onPresentsQtyInput(qty.value)"
+    min="5"
+    max="50"
+  />
 </div>
 
-
 <ng-template #choose>
-
   <div class="presents">
-    <div class="present" *ngFor="let p of presents; let i = index" [class.presented]="p === true">{{i}}</div>
+    <div
+      class="present"
+      *ngFor="let p of presents; let i = index"
+      [class.presented]="p === true"
+    >
+      {{ i }}
+    </div>
   </div>
   <div class="ask">
     <p>Какой номер пропустить?</p>
-    <input #skipInput type="password" autocomplete="off" [formControl]="skipCtrl" (keyup.enter)="onSkipNumInput()">
+    <input
+      #skipInput
+      type="password"
+      autocomplete="off"
+      [formControl]="skipCtrl"
+      (keyup.enter)="onSkipNumInput()"
+    />
   </div>
   <div *ngIf="chosen !== null" class="chosen-present">
-    <div class="num">{{chosen}}</div>
+    <div class="num">{{ chosen }}</div>
     <button (click)="onNextClick()">Следующий</button>
   </div>
 </ng-template>
 
-<p class="error">{{errMsg}}</p>
+<p class="error">{{ errMsg }}</p>

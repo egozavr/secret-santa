@@ -4,18 +4,16 @@ import { FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-
-  errMsg: string;
-
-  chosen: number = null;
-
-  presents: boolean[];
+  errMsg: string | null = '';
+  chosen: number | null = null;
+  presents: boolean[] = [];
   skipCtrl = new FormControl(null, Validators.pattern(/^\d+$/));
 
-  @ViewChild('skipInput', { static: false }) private skipInput: ElementRef;
+  @ViewChild('skipInput', { static: false })
+  private skipInput: ElementRef | null = null;
 
   onPresentsQtyInput(qty: number) {
     this.errMsg = null;
@@ -40,16 +38,20 @@ export class AppComponent {
 
     const rawVal: string = this.skipCtrl.value;
     const toSkip = parseInt(rawVal, 10);
-    if (typeof (toSkip) !== 'number' || toSkip < 0 || toSkip >= this.presents.length) {
+    if (
+      typeof toSkip !== 'number' ||
+      toSkip < 0 ||
+      toSkip >= this.presents.length
+    ) {
       this.errMsg = 'Подарка с таким номером нет 🤷‍♂️';
       return;
     }
-    
+
     this.skipCtrl.disable();
 
-    const toChooseNums = this.presents
-      .map((v, i) => v === false && i !== toSkip ? i : null)
-      .filter(num => num !== null);
+    const toChooseNums: number[] = this.presents
+      .map((v, i) => (v === false && i !== toSkip ? i : -1))
+      .filter((num) => num !== -1);
 
     const chosenIndex = Math.floor(Math.random() * toChooseNums.length);
     const chosen = toChooseNums[chosenIndex];
@@ -62,13 +64,13 @@ export class AppComponent {
   onNextClick() {
     this.chosen = null;
     this.skipCtrl.enable();
-    const inputEl: HTMLInputElement = this.skipInput.nativeElement;
+    const inputEl: HTMLInputElement = this.skipInput?.nativeElement;
     if (inputEl && inputEl.focus) {
       inputEl.focus();
     }
   }
 
   private leftPresentsQty(): number {
-    return this.presents.reduce((p, c) => c === false ? p + 1 : p, 0);
+    return this.presents.reduce((p, c) => (c === false ? p + 1 : p), 0);
   }
 }
