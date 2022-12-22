@@ -9,3 +9,4 @@
 0. Скачать пакеты: `npm install`
 1. Собрать приложение: `ng build --prod`
 2. Собрать и запустить контейнеры: `docker-compose up -d --build`
+3. Зайти на http://localhost:8080 (или по IP хоста, где запущен docker)
